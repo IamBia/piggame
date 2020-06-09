@@ -6,7 +6,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+}
+
+body {
+    font-family: Lato;
+    font-weight: 300;
 }
 
 .final-score {
@@ -24,6 +28,7 @@
 }
 
 .final-score:focus { outline: none; }
+.myinput:focus { outline: none; }
 
 #dice-1 { top: 120px; }
 #dice-2 { top: 250px; }
@@ -64,6 +69,58 @@ body {
     padding: 100px;
 }
 
+.modal {
+    position: absolute;
+    background-color: rgba(0,0,0,.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    background-color: #fff;
+    width: 800px;
+    height: 350px;
+    display: inline-block;
+}
+
+.modal-container img {
+    max-width: 20%;
+    max-height: 30%;
+    margin: 0px 50px 50px 50px;
+}
+
+.btn-close-modal {
+    
+}
+
+
+/*********************************************
+*** GAME INITIAL CONFIGS
+**********************************************/
+.myinput {
+    color: #555;
+    font-size: 18px;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+.active .player-name { font-weight: 300; }
+
+.info-avatar {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    font-family: Lato;
+}
 
 
 /**********************************************
@@ -81,6 +138,26 @@ body {
     position: relative;
 }
 
+.player-avatar {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.player-avatar-selection {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.player-avatar img {
+    border-radius: 50%;
+}
+
 .player-score {
     text-align: center;
     font-size: 80px;
@@ -90,7 +167,7 @@ body {
 }
 
 .active { background-color: #f7f7f7; }
-.active .player-name { font-weight: 300; }
+
 
 .active .player-name::after {
     content: "\2022";
@@ -159,6 +236,7 @@ i {
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
+.btn-start { bottom: 30px }
 
 .dice {
     position: absolute;
@@ -171,3 +249,9 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+#icon-back {
+    position: absolute;
+    float: left;
+    left: 50px;
+}
