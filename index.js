@@ -34,12 +34,20 @@ document.querySelectorAll('.avatar-chose-image')
 })
 
 function openModal(id) {
+    console.log("mostrando modal")
     document.querySelector('.modal').style.display = 'flex'
     document.querySelector('.modal').id = id
+    document.querySelector('.modal').classList.add('animate__fadeIn')
+    document.querySelector('.modal').classList.remove('animate__fadeOut')
+    document.querySelector('.modal').classList.remove('hidden')
     modalId = document.querySelector('.modal').id
     console.log(modalId)
 }
 
 function modalClose() {
-    document.querySelector('.modal').style.display="none"
+    console.log('escondendo modal')
+    document.querySelector('.modal').classList.remove('animate__fadeIn')
+    document.querySelector('.modal').classList.add('hidden')
+    document.querySelector('.modal').classList.add('animate__fadeOut')
+    
 } 

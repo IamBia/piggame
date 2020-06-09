@@ -78,13 +78,20 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
+    animation-duration: .5s;
+}
+
+.hidden {
+    display: none;
+    z-index: -10;
 }
 
 .modal-container {
     background-color: #fff;
     width: 800px;
-    height: 350px;
+    height: auto;
     display: inline-block;
+    padding-top: 50px;
 }
 
 .modal-container img {
