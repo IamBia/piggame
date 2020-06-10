@@ -9,6 +9,11 @@ GAME RULES:
 
 */
 
+if( localStorage.getItem('player1_name') == undefined ||
+    localStorage.getItem('player2_name') == undefined ||
+    localStorage.getItem('player1_avatar') == undefined ||
+    localStorage.getItem('player2_avatar') == undefined ) window.location.href = "index.html"
+
 var scores, roundScore, activePlayer, dice, gamePlaying;
 
 init();
