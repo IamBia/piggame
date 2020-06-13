@@ -9,6 +9,11 @@ GAME RULES:
 
 */
 
+if( localStorage.getItem('player1_name') == undefined ||
+    localStorage.getItem('player2_name') == undefined ||
+    localStorage.getItem('player1_avatar') == undefined ||
+    localStorage.getItem('player2_avatar') == undefined ) window.location.href = "index.html"
+
 var scores, roundScore, activePlayer, dice, gamePlaying;
 
 init();
@@ -16,10 +21,12 @@ init();
 var lastDice;
 
 function init() {
+    
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
     gamePlaying = true;
+    console.log('jogo iniciado')
     
     hideDice();
     
@@ -28,8 +35,10 @@ function init() {
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
     
-    document.getElementById('name-0').textContent = 'Player 1';
-    document.getElementById('name-1').textContent = 'Player 2';
+    document.getElementById('name-0').textContent = localStorage.getItem('player1_name');
+    document.getElementById('name-1').textContent = localStorage.getItem('player2_name');
+    document.getElementById('player1_avatar').src = localStorage.getItem('player1_avatar');
+    document.getElementById('player2_avatar').src = localStorage.getItem('player2_avatar');
     
     document.querySelector('.player-0-panel').classList.remove('winner');
     document.querySelector('.player-1-panel').classList.remove('winner');
@@ -41,46 +50,51 @@ function init() {
 }
 
 function nextPlayer() {
-    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //change player if current player gets number 1
-    roundScore = 0; //set score to 0
-    //show in the UI the score 0
-    document.getElementById('current-0').textContent = '0'; 
-    document.getElementById('current-1').textContent = '0';
     
-    //toggle active class
-    document.querySelector('.player-0-panel').classList.toggle('active');
-    document.querySelector('.player-1-panel').classList.toggle('active');
-    
-    hideDice(); //hide the dice for next player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //change player if current player gets number 1
+        roundScore = 0; //set score to 0
+        //show in the UI the score 0
+        document.getElementById('current-0').textContent = '0'; 
+        document.getElementById('current-1').textContent = '0';
+        
+        //toggle active class
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        
+        hideDice(); //hide the dice for next player
     
 }
 
 function hideDice() {
-    document.getElementById('dice-1').style.display = 'none'; //hide the dice for next player
-    document.getElementById('dice-2').style.display = 'none'; //hide the dice for next player
+    
+        document.getElementById('dice-1').style.display = 'none'; //hide the dice for next player
+        document.getElementById('dice-2').style.display = 'none'; //hide the dice for next player
+   
 };
 
 
 //roll the dice button
 document.querySelector('.btn-roll').addEventListener('click', () => {
-    if(gamePlaying) {
-        var dice1 = Math.floor(Math.random() * 6) + 1; //random number
-        var dice2 = Math.floor(Math.random() * 6) + 1; //random number
-        
-        document.getElementById('dice-1').style.display = 'block'; //show the dice;
-        document.getElementById('dice-2').style.display = 'block'; //show the dice;
-        document.getElementById('dice-1').src = 'dice-' + dice1 + '.png'; //show the dice with an image
-        document.getElementById('dice-2').src = 'dice-' + dice2 + '.png'; //show the dice with an image
- 
+    
+        if(gamePlaying) {
+            var dice1 = Math.floor(Math.random() * 6) + 1; //random number
+            var dice2 = Math.floor(Math.random() * 6) + 1; //random number
+            
+            document.getElementById('dice-1').style.display = 'block'; //show the dice;
+            document.getElementById('dice-2').style.display = 'block'; //show the dice;
+            document.getElementById('dice-1').src = 'dice-' + dice1 + '.png'; //show the dice with an image
+            document.getElementById('dice-2').src = 'dice-' + dice2 + '.png'; //show the dice with an image
+    
 
-        if(dice1 !== 1 && dice2 !==1) { //update score if the rolled number was not a 1
-            roundScore += dice1 + dice2; // same than roundScore = roundScore + dice
-            document.querySelector('#current-' + activePlayer).textContent = roundScore; // set the value for what the dice returned
-        } else {
-            nextPlayer();
+            if(dice1 !== 1 && dice2 !==1) { //update score if the rolled number was not a 1
+                roundScore += dice1 + dice2; // same than roundScore = roundScore + dice
+                document.querySelector('#current-' + activePlayer).textContent = roundScore; // set the value for what the dice returned
+            } else {
+                nextPlayer();
+            };
+        
         };
     
-    };
     
 });
 
@@ -115,7 +129,7 @@ document.querySelector('.btn-hold').addEventListener('click', () => {
 
 //new game button
 
-document.querySelector('.btn-new').addEventListener('click', init);
+document.querySelector('.btn-new').addEventListener('click', () => { if(gameStart) init()});
 
 
 
